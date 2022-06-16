@@ -1,0 +1,6 @@
+name: TreeTwerk
+version: '${project.version}'
+main: net.aerh.treetwerk.TreeTwerkPlugin
+api-version: 1.19
+authors: [ Aerh ]
+description: The famous tree twerking feature from Sky Factory
