@@ -19,6 +19,10 @@ public class TPlayer {
         return shifts;
     }
 
+    public void addShifts(int amount) {
+        setShifts(getShifts() + amount);
+    }
+
     public void setShifts(int shifts) {
         this.shifts = shifts;
     }
