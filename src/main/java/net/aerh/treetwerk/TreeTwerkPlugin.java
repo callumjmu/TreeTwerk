@@ -15,12 +15,6 @@ public final class TreeTwerkPlugin extends JavaPlugin {
         if(getConfig().getBoolean("enabled")) registerListeners();
     }
 
-    @Override
-    public void onDisable() {
-        instance = null;
-        // Plugin shutdown logic
-    }
-
     private void registerListeners() {
         getServer().getPluginManager().registerEvents(new SessionListener(), this);
         getServer().getPluginManager().registerEvents(new TwerkListener(), this);
