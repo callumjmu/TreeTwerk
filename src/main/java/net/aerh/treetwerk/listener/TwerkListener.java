@@ -49,7 +49,7 @@ public class TwerkListener implements Listener {
         }
 
         Location location = player.getLocation();
-        int radius = config.getInt("radius");
+        int radius = config.getInt("radius", 3);
         for (int x = -radius; x <= radius; x++) {
             for (int y = -radius; y <= radius; y++) {
                 for (int z = -radius; z <= radius; z++) {
