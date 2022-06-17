@@ -42,6 +42,7 @@ public class TwerkListener implements Listener {
         boolean sneaking = event.isSneaking();
         if (!sneaking) return;
 
+        // TODO reset this when the tree grows
         if (!tPlayer.canGrow()) {
             tPlayer.addShifts(1);
             return;
