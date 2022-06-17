@@ -60,7 +60,8 @@ public class TwerkListener implements Listener {
                         cooldown.add(player.getUniqueId());
                         Bukkit.getScheduler().runTaskLaterAsynchronously(TreeTwerkPlugin.getInstance(),
                                 () -> cooldown.remove(player.getUniqueId()),
-                                config.getLong("tick-cooldown", 10));
+                                config.getLong("tick-cooldown", 10)
+                        );
                     });
                 }
             }
