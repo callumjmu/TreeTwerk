@@ -1,3 +1,4 @@
 debug: false
+enabled: true
 min-shifts-required: 3
 radius: 3
