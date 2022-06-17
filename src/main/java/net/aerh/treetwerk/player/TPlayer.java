@@ -1,13 +1,12 @@
 package net.aerh.treetwerk.player;
 
-import net.aerh.treetwerk.TreeTwerkPlugin;
-
 import java.util.UUID;
 
 public class TPlayer {
 
     private final UUID uuid;
     private int shifts;
+    private boolean grow;
 
     public TPlayer(UUID uuid) {
         this.uuid = uuid;
@@ -18,7 +17,11 @@ public class TPlayer {
     }
 
     public boolean canGrow() {
-        return getShifts() > TreeTwerkPlugin.getInstance().getConfig().getInt("min-shifts-required");
+        return grow;
+    }
+
+    public void setCanGrow(boolean grow) {
+        this.grow = grow;
     }
 
     public int getShifts() {

@@ -12,7 +12,7 @@ public final class TreeTwerkPlugin extends JavaPlugin {
     public void onEnable() {
         instance = this;
         saveDefaultConfig();
-        if(getConfig().getBoolean("enabled")) registerListeners();
+        if (getConfig().getBoolean("enabled")) registerListeners();
     }
 
     private void registerListeners() {

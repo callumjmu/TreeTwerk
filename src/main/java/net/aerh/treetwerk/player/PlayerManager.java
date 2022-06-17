@@ -24,7 +24,8 @@ public class PlayerManager {
     }
 
     public void addPlayer(TPlayer tPlayer) {
-        if(TreeTwerkPlugin.isDebug()) TreeTwerkPlugin.getInstance().getLogger().info("Adding TPlayer '" + tPlayer.getId() + "'");
+        if (TreeTwerkPlugin.isDebug())
+            TreeTwerkPlugin.getInstance().getLogger().info("Adding TPlayer '" + tPlayer.getId() + "'");
         players.add(tPlayer);
     }
 
@@ -34,13 +35,14 @@ public class PlayerManager {
     }
 
     public void removePlayer(TPlayer tPlayer) {
-        if(TreeTwerkPlugin.isDebug()) TreeTwerkPlugin.getInstance().getLogger().info("Removing TPlayer '" + tPlayer.getId() + "'");
+        if (TreeTwerkPlugin.isDebug())
+            TreeTwerkPlugin.getInstance().getLogger().info("Removing TPlayer '" + tPlayer.getId() + "'");
         players.remove(tPlayer);
     }
 
     public TPlayer createPlayer(UUID uuid) {
         TPlayer tPlayer = new TPlayer(uuid);
-        if(players.contains(tPlayer)) throw new RuntimeException("Player already initialized");
+        if (players.contains(tPlayer)) throw new RuntimeException("Player already initialized");
         return new TPlayer(uuid);
     }
 

@@ -21,6 +21,7 @@ import java.util.UUID;
 public class TwerkListener implements Listener {
 
     private final FileConfiguration config = TreeTwerkPlugin.getInstance().getConfig();
+    private final Set<UUID> cooldown = new HashSet<>();
 
     private final Material[] SAPLINGS = new Material[]{
             Material.ACACIA_SAPLING,
@@ -31,8 +32,6 @@ public class TwerkListener implements Listener {
             Material.SPRUCE_SAPLING
     };
 
-    private final Set<UUID> cooldown = new HashSet<>();
-
     @EventHandler
     public void onShift(PlayerToggleSneakEvent event) {
         Player player = event.getPlayer();
@@ -42,9 +41,13 @@ public class TwerkListener implements Listener {
         boolean sneaking = event.isSneaking();
         if (!sneaking) return;
 
-        // TODO reset this when the tree grows
         if (!tPlayer.canGrow()) {
             tPlayer.addShifts(1);
+            if (tPlayer.getShifts() >= TreeTwerkPlugin.getInstance().getConfig().getInt("min-shifts-required")) {
+                if (TreeTwerkPlugin.isDebug())
+                    TreeTwerkPlugin.getInstance().getLogger().info("Player " + player.getName() + "' can now grow trees");
+                tPlayer.setCanGrow(true);
+            }
             return;
         }
 
@@ -55,7 +58,8 @@ public class TwerkListener implements Listener {
                 for (int z = -radius; z <= radius; z++) {
                     Block relative = location.getBlock().getRelative(x, y, z);
                     Arrays.stream(SAPLINGS).filter(material -> relative.getType() == material).forEach(material -> {
-                        if(TreeTwerkPlugin.isDebug()) TreeTwerkPlugin.getInstance().getLogger().info("Applied bone meal to " + material + " at " + formatLocationString(relative.getLocation()));
+                        if (TreeTwerkPlugin.isDebug())
+                            TreeTwerkPlugin.getInstance().getLogger().info("Applied bone meal to " + material + " at " + formatLocationString(relative.getLocation()));
                         relative.applyBoneMeal(player.getFacing());
                         cooldown.add(player.getUniqueId());
                         Bukkit.getScheduler().runTaskLaterAsynchronously(TreeTwerkPlugin.getInstance(),
