@@ -58,7 +58,9 @@ public class TwerkListener implements Listener {
                         if(TreeTwerkPlugin.isDebug()) TreeTwerkPlugin.getInstance().getLogger().info("Applied bone meal to " + material + " at " + formatLocationString(relative.getLocation()));
                         relative.applyBoneMeal(player.getFacing());
                         cooldown.add(player.getUniqueId());
-                        Bukkit.getScheduler().runTaskLaterAsynchronously(TreeTwerkPlugin.getInstance(), () -> cooldown.remove(player.getUniqueId()), 10L);
+                        Bukkit.getScheduler().runTaskLaterAsynchronously(TreeTwerkPlugin.getInstance(),
+                                () -> cooldown.remove(player.getUniqueId()),
+                                config.getLong("tick-cooldown", 10));
                     });
                 }
             }

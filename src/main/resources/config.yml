@@ -2,3 +2,4 @@ debug: false
 enabled: true
 min-shifts-required: 3
 radius: 3
+tick-cooldown: 10
